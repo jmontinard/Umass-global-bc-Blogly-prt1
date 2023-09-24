@@ -1,0 +1,32 @@
+{% extends 'base.html'  %}
+{% block title %}{user.get_fullname()}{% endblock %}
+
+
+{% block content %}
+<div class="user-card">
+
+    {% if user.image_url %}
+    <div class="card" style="width: 18rem;">
+        <img class='card-img-top' src="{{user.image_url}}" alt="{{ user.get_fullname }}" />
+    </div>
+    {% endif %}
+
+
+    <div class="card-body">
+        <h1 class="card-title">{{user.get_fullname}}</h1>
+
+        <form>
+        <button class="btn btn-primary"
+              formaction="/users/{{ user.id }}/edit"
+              formmethod="GET">Edit
+        </button>
+
+        <button class="btn btn-danger"
+            formaction="/users/{{ user.id }}/delete"
+            formmethod="POST">Delete</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
